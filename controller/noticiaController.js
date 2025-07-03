@@ -35,6 +35,23 @@ exports.obtenerNoticiaPorId = async (req, res) => {
     }
 }
 
+exports.obtenerNoticiasPorCategoria = async (req, res) => {
+    try {
+        const categoria = req.params.categoria;
+
+        const noticias = await Noticia.find({ categoria });
+
+        if (!noticias || noticias.length === 0) {
+            return res.status(404).json({ mensaje: 'No se encontraron noticias para esta categoría' });
+        }
+
+        res.status(200).json(noticias);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al obtener noticias por categoría', error: error.message });
+    }
+};
+
 exports.actualizarNoticia = async (req, res) => {
     try {
         const noticiaActualizada = await Noticia.findByIdAndUpdate  (req.params.id, req.body, { new: true });

@@ -6,6 +6,7 @@ const noticiaController = require('../controller/noticiaController');
 router.post('/', noticiaController.crearNoticia);
 router.get('/', noticiaController.obtenerNoticias);
 router.get('/:id', noticiaController.obtenerNoticiaPorId);
+router.get('/categoria/:categoria', noticiaController.obtenerNoticiasPorCategoria);
 router.put('/:id', noticiaController.actualizarNoticia);
 router.delete('/:id', noticiaController.eliminarNoticia);
 
